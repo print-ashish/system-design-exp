@@ -1,0 +1,31 @@
+# docker-compose.yml
+# Spins up a PostgreSQL instance on host port 5436.
+#
+# Usage:
+#   docker-compose up -d          # start in background
+#   docker-compose down           # stop and remove container
+#   docker-compose down -v        # also wipe the data volume
+
+version: "3.9"
+
+services:
+  postgres:
+    image: postgres:16-alpine          # lightweight Alpine-based image
+    container_name: postgres-pool-demo
+    restart: unless-stopped
+    environment:
+      POSTGRES_PASSWORD: pass
+      POSTGRES_USER: postgres
+      POSTGRES_DB: postgres
+    ports:
+      - "5436:5432"                    # host 5436 → container 5432
+    volumes:
+      - pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  pgdata:
