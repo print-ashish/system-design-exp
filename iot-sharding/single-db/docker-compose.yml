@@ -1,0 +1,9 @@
+services:
+  iot_db:
+    image: postgres:15
+    environment:
+      POSTGRES_USER: admin
+      POSTGRES_PASSWORD: password
+      POSTGRES_DB: iot_single
+    ports:
+      - "5432:5432"

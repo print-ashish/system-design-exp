@@ -1,0 +1,15 @@
+services:
+  shard_1:
+    image: postgres:15
+    environment: [POSTGRES_USER=admin, POSTGRES_PASSWORD=password, POSTGRES_DB=iot_shard_1]
+    ports: ["5431:5432"]
+
+  shard_2:
+    image: postgres:15
+    environment: [POSTGRES_USER=admin, POSTGRES_PASSWORD=password, POSTGRES_DB=iot_shard_2]
+    ports: ["5432:5432"]
+
+  shard_3:
+    image: postgres:15
+    environment: [POSTGRES_USER=admin, POSTGRES_PASSWORD=password, POSTGRES_DB=iot_shard_3]
+    ports: ["5433:5432"]
